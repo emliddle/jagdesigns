@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jim Gregory — JAG Designs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --steel-dark: #141824; --steel-deeper: #0D1017; --white: #FFFFFF; --off-white: #F6F5F1; --bronze: #C48A14; --text-dark: #1A1A1A; --text-mid: #5A5A5A; --border-dark: rgba(255,255,255,0.07); --border-light: rgba(0,0,0,0.08); }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-deeper); color: #fff; -webkit-font-smoothing: antialiased; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; background: rgba(13,16,23,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-dark); }
+    .nav-logo { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .nav-links { display: flex; gap: 44px; list-style: none; }
+    .nav-links a { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--bronze); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-toggle span { display: block; width: 24px; height: 1px; background: #fff; }
+
+    .page-hero { background: var(--steel-dark); padding: 140px 56px 72px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-dark); }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(196,138,20,0.06) 0%, transparent 60%); pointer-events: none; }
+    .page-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 18px; display: block; }
+    .page-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(40px, 5.5vw, 72px); font-weight: 300; color: #fff; line-height: 1.1; }
+    .page-subtitle { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); margin-top: 16px; letter-spacing: 0.06em; }
+
+    /* ABOUT BODY — dark left, photo right */
+    .about-body { display: grid; grid-template-columns: 1fr 1fr; }
+    .about-text { background: var(--steel-dark); padding: 80px 64px 80px 56px; }
+    .about-text p { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.9; margin-bottom: 28px; max-width: 520px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-photo { background: linear-gradient(145deg, #1A2438 0%, #263050 60%, #1A2438 100%); position: sticky; top: 65px; height: calc(100vh - 65px); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.15); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+
+    /* CREDENTIALS */
+    .credentials { background: var(--steel-deeper); padding: 80px 56px; border-top: 1px solid var(--border-dark); }
+    .cred-section-label { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 48px; display: block; }
+    .cred-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 40px; }
+    .cred-block {}
+    .cred-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 10px; }
+    .cred-value { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 400; color: #fff; line-height: 1.3; margin-bottom: 6px; }
+    .cred-detail { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+    /* SKILLS */
+    .skills-section { background: var(--steel-dark); padding: 80px 56px; border-top: 1px solid var(--border-dark); }
+    .skills-heading { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 36px; font-weight: 300; color: #fff; margin-bottom: 40px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .skill-item { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.45); padding: 14px 0; border-top: 1px solid var(--border-dark); }
+
+    /* CTA */
+    .about-cta { background: var(--steel-deeper); padding: 100px 56px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-top: 1px solid var(--border-dark); }
+    .about-cta-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 36px; font-weight: 300; font-style: italic; color: #fff; max-width: 520px; line-height: 1.3; }
+    .btn-outline { display: inline-block; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 15px 36px; transition: border-color 0.3s, color 0.3s; white-space: nowrap; }
+    .btn-outline:hover { border-color: var(--bronze); color: var(--bronze); }
+
+    footer { background: var(--steel-deeper); border-top: 1px solid var(--border-dark); padding: 64px 56px 36px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
+    .footer-sub { font-size: 12px; color: rgba(255,255,255,0.28); }
+    .footer-col-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
+    .footer-col-body { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.9; }
+    .footer-col-body a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-col-body a:hover { color: var(--bronze); }
+    .footer-bottom { border-top: 1px solid var(--border-dark); padding-top: 24px; }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
+
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(13,16,23,0.98); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; z-index: 101; }
+      .page-hero { padding: 110px 24px 56px; }
+      .about-body { grid-template-columns: 1fr; }
+      .about-text { padding: 56px 24px; }
+      .about-text p { max-width: 100%; }
+      .about-photo { position: relative; height: 300px; top: 0; }
+      .credentials { padding: 56px 24px; }
+      .cred-grid { grid-template-columns: 1fr; gap: 36px; }
+      .skills-section { padding: 56px 24px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-cta { flex-direction: column; align-items: flex-start; padding: 64px 24px; }
+      .about-cta-text { font-size: 28px; }
+      footer { padding: 48px 24px 28px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">JAG Designs</a>
+    <div class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html" class="active">Jim Gregory</a></li>
+      <li><a href="statement.html">Statement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <span class="page-eyebrow">The Artist</span>
+    <h1 class="page-title">Jim Gregory</h1>
+    <p class="page-subtitle">Glass &amp; Steel Artist &nbsp;&middot;&nbsp; Abiquiu, New Mexico</p>
+  </div>
+
+  <div class="about-body">
+    <div class="about-text">
+      <p>I work with steel and glass out of two studios in Abiquiu, New Mexico. I designed and built both shops from the ground up, along with most of the tools and equipment inside them. The building is part of the process.</p>
+      <p>My foundation is in glass. I trained in glassblowing and neon art at PRATT Fine Arts Center in Seattle, then spent years evolving that practice through fused glass, slumped glass, and eventually the shattered glass panels that are now a signature part of my work. I taught myself to weld and to forge, and I have been refining that craft with every sculpture since.</p>
+      <p>Before sculpture, I designed jewelry. Specific pieces sold at Neiman Marcus. I think about that scale even when I am building something ten feet tall -- the precision, the finish, the way a form reads from every angle.</p>
+      <p>My public work has been placed in Napa Valley and at a sculpture park in Abiquiu. I have participated multiple years in the Loveland Sculpture in the Park, a nationally juried show in Colorado, selling work and returning by invitation each year. Large-scale public installation is where I put my focus, pieces built to live outdoors, to hold up to weather and time, and to belong to the places they occupy.</p>
+      <p>I also build work sized for a home or a private garden. The materials, the craft, and the standard are the same regardless of scale.</p>
+      <p>Custom commissions are always welcome.</p>
+    </div>
+    <div class="about-photo">Artist photo</div>
+  </div>
+
+  <section class="credentials">
+    <span class="cred-section-label">Credentials</span>
+    <div class="cred-grid">
+      <div class="cred-block"><p class="cred-label">Training</p><p class="cred-value">PRATT Fine Arts Center</p><p class="cred-detail">Glassblowing and neon art, Seattle, Washington</p></div>
+      <div class="cred-block"><p class="cred-label">Juried Shows</p><p class="cred-value">Loveland Sculpture in the Park</p><p class="cred-detail">Multiple years. Invited to return each year.</p></div>
+      <div class="cred-block"><p class="cred-label">Public Art</p><p class="cred-value">Napa Valley, California</p><p class="cred-detail">Permanent outdoor installation</p></div>
+      <div class="cred-block"><p class="cred-label">Public Art</p><p class="cred-value">Abiquiu Sculpture Park</p><p class="cred-detail">Permanent outdoor installation, New Mexico</p></div>
+      <div class="cred-block"><p class="cred-label">Commercial</p><p class="cred-value">Neiman Marcus</p><p class="cred-detail">Original jewelry designs sold through Neiman Marcus</p></div>
+      <div class="cred-block"><p class="cred-label">Studio</p><p class="cred-value">Abiquiu, New Mexico</p><p class="cred-detail">Two studios designed and built by hand, including custom tooling</p></div>
+    </div>
+  </section>
+
+  <section class="skills-section">
+    <h2 class="skills-heading">Materials &amp; Methods</h2>
+    <div class="skills-grid">
+      <span class="skill-item">Glassblowing</span>
+      <span class="skill-item">Neon Glass</span>
+      <span class="skill-item">Kiln Forming</span>
+      <span class="skill-item">Fused Glass</span>
+      <span class="skill-item">Slumped Glass</span>
+      <span class="skill-item">Shattered Glass</span>
+      <span class="skill-item">Welding</span>
+      <span class="skill-item">Forging</span>
+      <span class="skill-item">Patinas &amp; Dyeing</span>
+      <span class="skill-item">Jewelry Making</span>
+      <span class="skill-item">Sculpture</span>
+      <span class="skill-item">Carpentry</span>
+    </div>
+  </section>
+
+  <div class="about-cta">
+    <p class="about-cta-text">Large-scale commissions and public installations welcome.</p>
+    <a href="contact.html" class="btn-outline">Get in Touch</a>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><p class="footer-brand">JAG Designs</p><p class="footer-sub">Glass &amp; Steel Art &nbsp;&middot;&nbsp; Abiquiu, New Mexico</p></div>
+      <div><p class="footer-col-label">Contact</p><div class="footer-col-body"><a href="mailto:jagdesigns68@gmail.com">jagdesigns68@gmail.com</a><br><a href="tel:+15057953445">(505) 795-3445</a></div></div>
+      <div><p class="footer-col-label">Navigate</p><div class="footer-col-body"><a href="portfolio.html">Portfolio</a><br><a href="about.html">Jim Gregory</a><br><a href="statement.html">Statement</a><br><a href="contact.html">Contact</a></div></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2026 JAG Designs &nbsp;&middot;&nbsp; All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  </script>
+</body>
+</html>
