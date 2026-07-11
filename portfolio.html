@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — JAG Designs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --steel-dark: #141824;
+      --steel-deeper: #0D1017;
+      --steel-mid: #1A2035;
+      --white: #FFFFFF;
+      --off-white: #F6F5F1;
+      --bronze: #C48A14;
+      --text-dark: #1A1A1A;
+      --text-mid: #5A5A5A;
+      --border-dark: rgba(255,255,255,0.07);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-deeper); color: #fff; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; background: rgba(13,16,23,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-dark); }
+    .nav-logo { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .nav-links { display: flex; gap: 44px; list-style: none; }
+    .nav-links a { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--bronze); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-toggle span { display: block; width: 24px; height: 1px; background: #fff; }
+
+    /* PAGE HERO */
+    .page-hero { background: var(--steel-dark); padding: 140px 56px 72px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-dark); }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(196,138,20,0.06) 0%, transparent 60%); pointer-events: none; }
+    .page-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 18px; display: block; }
+    .page-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(40px, 5.5vw, 72px); font-weight: 300; color: #fff; line-height: 1.1; }
+    .page-subtitle { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.45); margin-top: 18px; max-width: 520px; line-height: 1.75; }
+
+    /* SECTION TABS */
+    .port-tabs { background: var(--steel-deeper); border-bottom: 1px solid var(--border-dark); display: flex; padding: 0 56px; position: sticky; top: 65px; z-index: 50; }
+    .port-tab { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-decoration: none; padding: 18px 28px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .port-tab:hover { color: rgba(255,255,255,0.7); }
+    .port-tab.active { color: var(--bronze); border-bottom-color: var(--bronze); }
+
+    /* PORTFOLIO SECTIONS */
+    .port-section { padding: 80px 56px 100px; border-bottom: 1px solid var(--border-dark); }
+    .port-section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; padding-bottom: 28px; border-bottom: 1px solid var(--border-dark); }
+    .port-section-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 44px; font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+    .port-section-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 460px; }
+    .port-count { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.2); white-space: nowrap; margin-bottom: 4px; }
+    .section-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); display: block; margin-bottom: 14px; }
+
+    /* PIECE GRID */
+    .piece-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .piece-grid .piece:first-child { grid-column: 1 / 3; }
+    .piece-grid .piece:first-child .piece-img { aspect-ratio: 16/9; }
+    .piece { display: block; text-decoration: none; }
+    .piece-img { width: 100%; aspect-ratio: 4/3; background: linear-gradient(155deg, #1B2540 0%, #253050 45%, #18213A 100%); position: relative; overflow: hidden; transition: filter 0.4s; }
+    .piece-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(9,12,20,0.7) 100%); }
+    .piece:hover .piece-img { filter: brightness(1.15); }
+    .piece-img-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.18); }
+    .piece-meta { padding: 16px 0 4px; }
+    .piece-name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 400; color: #fff; margin-bottom: 4px; }
+    .piece-detail { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; }
+
+    /* CTA STRIP */
+    .port-cta { background: var(--steel-dark); padding: 80px 56px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-top: 1px solid var(--border-dark); }
+    .port-cta-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 34px; font-weight: 300; font-style: italic; color: #fff; max-width: 520px; line-height: 1.3; }
+    .btn-outline { display: inline-block; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 15px 36px; transition: border-color 0.3s, color 0.3s; white-space: nowrap; }
+    .btn-outline:hover { border-color: var(--bronze); color: var(--bronze); }
+
+    /* FOOTER */
+    footer { background: var(--steel-deeper); border-top: 1px solid var(--border-dark); padding: 64px 56px 36px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
+    .footer-sub { font-size: 12px; color: rgba(255,255,255,0.28); }
+    .footer-col-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
+    .footer-col-body { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.9; }
+    .footer-col-body a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-col-body a:hover { color: var(--bronze); }
+    .footer-bottom { border-top: 1px solid var(--border-dark); padding-top: 24px; }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(13,16,23,0.98); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; z-index: 101; }
+      .page-hero { padding: 110px 24px 56px; }
+      .port-tabs { padding: 0 24px; overflow-x: auto; top: 57px; }
+      .port-section { padding: 56px 24px 72px; }
+      .port-section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .port-section-title { font-size: 32px; }
+      .piece-grid { grid-template-columns: 1fr; }
+      .piece-grid .piece:first-child { grid-column: 1; }
+      .piece-grid .piece:first-child .piece-img { aspect-ratio: 4/3; }
+      .port-cta { flex-direction: column; align-items: flex-start; padding: 56px 24px; }
+      .port-cta-text { font-size: 26px; }
+      footer { padding: 48px 24px 28px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo">JAG Designs</a>
+    <div class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="about.html">Jim Gregory</a></li>
+      <li><a href="statement.html">Statement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <span class="page-eyebrow">The Work</span>
+    <h1 class="page-title">Steel and glass,<br>built to last.</h1>
+    <p class="page-subtitle">Three bodies of work spanning large-scale public installation, functional art furniture, and shattered glass panels. All original designs. Custom commissions welcome.</p>
+  </div>
+
+  <nav class="port-tabs">
+    <a href="#sculpture" class="port-tab active">Sculpture</a>
+    <a href="#functional" class="port-tab">Furniture</a>
+    <a href="#shattered" class="port-tab">Shattered Glass</a>
+  </nav>
+
+  <section class="port-section" id="sculpture">
+    <div class="port-section-header">
+      <div>
+        <span class="section-eyebrow">Sculpture</span>
+        <h2 class="port-section-title">Steel &amp; Glass Sculpture</h2>
+        <p class="port-section-desc">Large-format steel structures with fused and slumped glass, built for outdoor environments and public spaces. Each piece is an original design, engineered for permanence.</p>
+      </div>
+      <span class="port-count">17 works</span>
+    </div>
+    <div class="piece-grid">
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Sculpture 01 — hero</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Sculpture 02</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Sculpture 03</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Sculpture 04</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, slumped glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Sculpture 05</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Sculpture 06</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Sculpture 07</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Sculpture 08</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Sculpture 09</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+    </div>
+  </section>
+
+  <section class="port-section" id="functional">
+    <div class="port-section-header">
+      <div>
+        <span class="section-eyebrow">Functional</span>
+        <h2 class="port-section-title">Steel &amp; Glass Furniture</h2>
+        <p class="port-section-desc">Tables and furniture built in steel and glass, designed to the same standard as the sculpture work. These pieces live at the intersection of craft and daily life.</p>
+      </div>
+    </div>
+    <div class="piece-grid">
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Furniture 01 — hero</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Furniture 02</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Furniture 03</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Dimensions TK</p></div></div>
+    </div>
+  </section>
+
+  <section class="port-section" id="shattered">
+    <div class="port-section-header">
+      <div>
+        <span class="section-eyebrow">Shattered</span>
+        <h2 class="port-section-title">Shattered Glass</h2>
+        <p class="port-section-desc">Original glass panels set in hand-forged steel frames. Each piece uses the fracture pattern and silhouette as composition. No two are alike.</p>
+      </div>
+    </div>
+    <div class="piece-grid">
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Shattered 01 — hero</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Shattered glass, forged steel frame &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Shattered 02</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Shattered glass, forged steel frame &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <div class="piece"><div class="piece-img"><span class="piece-img-label">Shattered 03</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Shattered glass, forged steel frame &nbsp;·&nbsp; Dimensions TK</p></div></div>
+    </div>
+  </section>
+
+  <div class="port-cta">
+    <p class="port-cta-text">Interested in a commission or public installation?</p>
+    <a href="contact.html" class="btn-outline">Get in Touch</a>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><p class="footer-brand">JAG Designs</p><p class="footer-sub">Glass &amp; Steel Art &nbsp;&middot;&nbsp; Abiquiu, New Mexico</p></div>
+      <div><p class="footer-col-label">Contact</p><div class="footer-col-body"><a href="mailto:jagdesigns68@gmail.com">jagdesigns68@gmail.com</a><br><a href="tel:+15057953445">(505) 795-3445</a></div></div>
+      <div><p class="footer-col-label">Navigate</p><div class="footer-col-body"><a href="portfolio.html">Portfolio</a><br><a href="about.html">Jim Gregory</a><br><a href="statement.html">Statement</a><br><a href="contact.html">Contact</a></div></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2026 JAG Designs &nbsp;&middot;&nbsp; All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+    const tabs = document.querySelectorAll('.port-tab');
+    const sections = ['sculpture','functional','shattered'].map(id => document.getElementById(id));
+    window.addEventListener('scroll', () => {
+      let current = 'sculpture';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) current = s.id; });
+      tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + current));
+    });
+  </script>
+</body>
+</html>

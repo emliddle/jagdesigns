@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — JAG Designs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --steel-dark: #141824; --steel-deeper: #0D1017; --bronze: #C48A14; --border-dark: rgba(255,255,255,0.07); --border-input: rgba(255,255,255,0.15); }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-deeper); color: #fff; -webkit-font-smoothing: antialiased; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; background: rgba(13,16,23,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-dark); }
+    .nav-logo { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .nav-links { display: flex; gap: 44px; list-style: none; }
+    .nav-links a { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--bronze); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-toggle span { display: block; width: 24px; height: 1px; background: #fff; }
+
+    .page-hero { background: var(--steel-dark); padding: 140px 56px 72px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-dark); }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(196,138,20,0.06) 0%, transparent 60%); pointer-events: none; }
+    .page-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 18px; display: block; }
+    .page-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(40px, 5.5vw, 72px); font-weight: 300; color: #fff; line-height: 1.1; }
+
+    /* CONTACT BODY */
+    .contact-body { display: grid; grid-template-columns: 1fr 1fr; }
+
+    /* LEFT INFO */
+    .contact-info { background: var(--steel-dark); padding: 80px 64px 80px 56px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border-dark); }
+    .contact-intro { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.85; margin-bottom: 56px; max-width: 380px; }
+    .contact-block { margin-bottom: 36px; }
+    .contact-block-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 10px; }
+    .contact-block-value { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 400; color: #fff; line-height: 1.4; }
+    .contact-block-value a { color: #fff; text-decoration: none; transition: color 0.2s; }
+    .contact-block-value a:hover { color: var(--bronze); }
+    .commission-note { margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border-dark); }
+    .commission-note-title { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 12px; }
+    .commission-note-text { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.8; }
+
+    /* RIGHT FORM */
+    .contact-form-wrap { background: var(--steel-deeper); padding: 80px 56px 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .form-heading { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 36px; font-weight: 300; color: #fff; margin-bottom: 48px; }
+    .form-group { margin-bottom: 32px; }
+    .form-label { display: block; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 12px; }
+    .form-input, .form-select, .form-textarea { width: 100%; font-family: 'DM Sans', system-ui, sans-serif; font-size: 14px; font-weight: 300; color: #fff; background: transparent; border: none; border-bottom: 1px solid var(--border-input); padding: 10px 0; outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-bottom-color: var(--bronze); }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.2); }
+    .form-select { cursor: pointer; color: rgba(255,255,255,0.6); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 24px; }
+    .form-select option { background: var(--steel-dark); color: #fff; }
+    .form-textarea { resize: vertical; min-height: 120px; line-height: 1.7; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .btn-submit { font-family: 'DM Sans', system-ui, sans-serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); padding: 16px 40px; cursor: pointer; transition: background 0.3s, border-color 0.3s; margin-top: 8px; }
+    .btn-submit:hover { background: var(--bronze); border-color: var(--bronze); }
+    .form-success { display: none; padding: 20px 0 0; font-size: 13px; color: var(--bronze); letter-spacing: 0.06em; }
+
+    footer { background: var(--steel-deeper); border-top: 1px solid var(--border-dark); padding: 64px 56px 36px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
+    .footer-sub { font-size: 12px; color: rgba(255,255,255,0.28); }
+    .footer-col-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
+    .footer-col-body { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.9; }
+    .footer-col-body a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-col-body a:hover { color: var(--bronze); }
+    .footer-bottom { border-top: 1px solid var(--border-dark); padding-top: 24px; }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
+
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(13,16,23,0.98); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; z-index: 101; }
+      .page-hero { padding: 110px 24px 56px; }
+      .contact-body { grid-template-columns: 1fr; }
+      .contact-info { padding: 56px 24px; border-right: none; border-bottom: 1px solid var(--border-dark); }
+      .contact-form-wrap { padding: 56px 24px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      footer { padding: 48px 24px 28px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">JAG Designs</a>
+    <div class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">Jim Gregory</a></li>
+      <li><a href="statement.html">Statement</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <span class="page-eyebrow">Get in Touch</span>
+    <h1 class="page-title">Let's talk about<br>your project.</h1>
+  </div>
+
+  <div class="contact-body">
+    <div class="contact-info">
+      <p class="contact-intro">Whether you're interested in a public installation, a private commission, or a piece for your home, reach out directly. Jim responds to all serious inquiries.</p>
+      <div class="contact-block">
+        <p class="contact-block-label">Email</p>
+        <p class="contact-block-value"><a href="mailto:jagdesigns68@gmail.com">jagdesigns68@gmail.com</a></p>
+      </div>
+      <div class="contact-block">
+        <p class="contact-block-label">Phone</p>
+        <p class="contact-block-value"><a href="tel:+15057953445">(505) 795-3445</a></p>
+      </div>
+      <div class="contact-block">
+        <p class="contact-block-label">Studio</p>
+        <p class="contact-block-value">Abiquiu, New Mexico</p>
+      </div>
+      <div class="commission-note">
+        <p class="commission-note-title">About commissions</p>
+        <p class="commission-note-text">All designs are original and made to order. Commission timelines vary by scale and complexity. Public art and large-scale outdoor installations welcome. Happy to discuss site visits, material specifications, and installation requirements.</p>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap">
+      <h2 class="form-heading">Send a message.</h2>
+      <!-- Formspree: replace YOUR_FORM_ID at formspree.io (free) -->
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="name">Your Name</label>
+            <input class="form-input" type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input class="form-input" type="email" id="email" name="email" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inquiry">Type of Inquiry</label>
+          <select class="form-select" id="inquiry" name="inquiry">
+            <option value="">Select one</option>
+            <option value="public-commission">Public Art Commission</option>
+            <option value="private-commission">Private Commission</option>
+            <option value="purchase">Purchase Existing Work</option>
+            <option value="general">General Question</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-textarea" id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+        <p class="form-success" id="form-success">Thank you. Jim will be in touch shortly.</p>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><p class="footer-brand">JAG Designs</p><p class="footer-sub">Glass &amp; Steel Art &nbsp;&middot;&nbsp; Abiquiu, New Mexico</p></div>
+      <div><p class="footer-col-label">Contact</p><div class="footer-col-body"><a href="mailto:jagdesigns68@gmail.com">jagdesigns68@gmail.com</a><br><a href="tel:+15057953445">(505) 795-3445</a></div></div>
+      <div><p class="footer-col-label">Navigate</p><div class="footer-col-body"><a href="portfolio.html">Portfolio</a><br><a href="about.html">Jim Gregory</a><br><a href="statement.html">Statement</a><br><a href="contact.html">Contact</a></div></div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2026 JAG Designs &nbsp;&middot;&nbsp; All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    form.addEventListener('submit', async (e) => {
+      if (form.action.includes('YOUR_FORM_ID')) return;
+      e.preventDefault();
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) { form.reset(); success.style.display = 'block'; }
+    });
+  </script>
+</body>
+</html>
