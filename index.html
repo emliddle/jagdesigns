@@ -543,13 +543,7 @@
   </nav>
 
   <!-- HERO — full bleed -->
-  <!-- When real photo is ready:
-       Add to .hero in CSS: background-image: url('images/hero.jpg');
-       and remove .hero-img-placeholder entirely -->
-  <section class="hero">
-    <div class="hero-img-placeholder">
-      <span>Hero image — large sculpture photo</span>
-    </div>
+  <section class="hero" style="background-image: linear-gradient(105deg, rgba(12,15,24,0.92) 0%, rgba(12,15,24,0.75) 45%, rgba(12,15,24,0.25) 100%), url('images/hero.jpg'); background-size: cover; background-position: center;">
     <div class="hero-content">
       <span class="eyebrow">Glass &amp; Steel Artist</span>
       <h1>
@@ -576,7 +570,7 @@
 
       <a href="portfolio.html#sculpture" class="coll-card primary">
         <div class="coll-img">
-          <span class="coll-img-label">Sculpture photo</span>
+          <img src="images/indoor_sculpture_01.jpg" alt="Steel and glass sculpture by Jim Gregory" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="coll-meta">
           <p class="coll-cat">Sculpture</p>
@@ -587,7 +581,7 @@
 
       <a href="portfolio.html#functional" class="coll-card secondary">
         <div class="coll-img">
-          <span class="coll-img-label">Functional photo</span>
+          <img src="images/impact_table_01.jpg" alt="Steel and glass furniture by Jim Gregory" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="coll-meta">
           <p class="coll-cat">Functional</p>
@@ -618,7 +612,9 @@
       <p class="about-bio">Trained in glassblowing and neon art at PRATT Fine Arts Center in Seattle, Jim Gregory has spent decades evolving a practice that moves between the precision of jewelry design and the scale of public installation. He works from two studios he built by hand in Abiquiu, New Mexico.</p>
       <a href="about.html" class="btn-arrow">Full Biography</a>
     </div>
-    <div class="about-photo">Artist photo</div>
+    <div class="about-photo" style="padding:0;">
+      <img src="images/jim-gregory.png" alt="Jim Gregory, glass and steel artist" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
   </section>
 
   <!-- CREDENTIALS -->
