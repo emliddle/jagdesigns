@@ -9,51 +9,68 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --steel-dark: #141824; --steel-deeper: #0D1017; --bronze: #C48A14; --border-dark: rgba(255,255,255,0.07); }
+    :root { --steel-dark: #141824; --steel-deeper: #0D1017; --bronze: #C48A14; --border-dark: rgba(255,255,255,0.10); }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-deeper); color: #fff; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-dark); color: #fff; -webkit-font-smoothing: antialiased; }
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; background: rgba(13,16,23,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-dark); }
-    .nav-logo { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .nav-logo { font-size: 13px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; }
     .nav-links { display: flex; gap: 44px; list-style: none; }
-    .nav-links a { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.2s; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.80); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--bronze); }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .nav-toggle span { display: block; width: 24px; height: 1px; background: #fff; }
 
-    .page-hero { background: var(--steel-dark); padding: 140px 56px 72px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-dark); }
+    .page-hero { background: var(--steel-deeper); padding: 140px 56px 72px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-dark); }
     .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(196,138,20,0.06) 0%, transparent 60%); pointer-events: none; }
-    .page-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 18px; display: block; }
-    .page-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(40px, 5.5vw, 72px); font-weight: 300; color: #fff; line-height: 1.1; }
+    .page-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 20px; display: block; }
+    .page-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(44px, 6vw, 80px); font-weight: 300; color: #fff; line-height: 1.1; }
 
-    /* STATEMENT */
-    .statement-body { background: var(--steel-dark); padding: 100px 56px 120px; display: grid; grid-template-columns: 220px 1fr; gap: 96px; }
-    .statement-attr-name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 400; color: #fff; margin-bottom: 4px; }
-    .statement-attr-title { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.68); letter-spacing: 0.06em; margin-bottom: 36px; }
-    .attr-divider { width: 28px; height: 1px; background: var(--bronze); margin-bottom: 32px; opacity: 0.7; }
-    .statement-meta { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.62); line-height: 2.1; }
-    .statement-links { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
-    .statement-links a { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.2s; }
-    .statement-links a:hover { color: var(--bronze); }
-    .statement-text p { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(20px, 2vw, 26px); font-weight: 300; color: rgba(255,255,255,0.88); line-height: 1.8; margin-bottom: 36px; }
+    /* STATEMENT BODY */
+    .statement-body { max-width: 860px; margin: 0 auto; padding: 80px 56px 100px; }
+
+    .statement-text p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(22px, 2.2vw, 28px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
     .statement-text p:last-child { margin-bottom: 0; }
-    .statement-text p.lead { font-size: clamp(24px, 2.6vw, 32px); color: #fff; }
+    .statement-text p.lead {
+      font-size: clamp(26px, 2.8vw, 34px);
+      color: #fff;
+    }
+
+    /* ATTRIBUTION */
+    .statement-attr {
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .attr-divider { width: 32px; height: 1px; background: var(--bronze); opacity: 0.7; flex-shrink: 0; }
+    .attr-name { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.75); letter-spacing: 0.06em; }
+    .attr-title { font-size: 13px; color: rgba(255,255,255,0.45); letter-spacing: 0.06em; }
 
     /* PULL QUOTE */
-    .pull-section { background: var(--steel-deeper); padding: 100px 56px; text-align: center; border-top: 1px solid var(--border-dark); }
-    .pull-quote { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(26px, 3.5vw, 48px); font-weight: 300; font-style: italic; color: #fff; line-height: 1.4; max-width: 780px; margin: 0 auto 24px; }
-    .pull-attr { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); }
+    .pull-section { background: var(--steel-deeper); padding: 100px 56px; border-top: 1px solid var(--border-dark); text-align: center; }
+    .pull-quote { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(26px, 3.5vw, 48px); font-weight: 300; font-style: italic; color: #fff; line-height: 1.4; max-width: 800px; margin: 0 auto 28px; }
+    .pull-attr { font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); }
 
     footer { background: var(--steel-deeper); border-top: 1px solid var(--border-dark); padding: 64px 56px 36px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer-brand { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
+    .footer-brand { font-size: 13px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
     .footer-sub { font-size: 14px; color: rgba(255,255,255,0.65); }
-    .footer-col-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
+    .footer-col-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
     .footer-col-body { font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.9; }
-    .footer-col-body a { color: rgba(255,255,255,0.78); text-decoration: none; transition: color 0.2s; }
+    .footer-col-body a { color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.2s; }
     .footer-col-body a:hover { color: var(--bronze); }
     .footer-bottom { border-top: 1px solid var(--border-dark); padding-top: 24px; }
-    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.35); }
 
     @media (max-width: 768px) {
       nav { padding: 18px 24px; }
@@ -61,8 +78,7 @@
       .nav-links.open { display: flex; }
       .nav-toggle { display: flex; z-index: 101; }
       .page-hero { padding: 110px 24px 56px; }
-      .statement-body { grid-template-columns: 1fr; padding: 64px 24px 80px; gap: 48px; }
-      .statement-links { flex-direction: row; flex-wrap: wrap; }
+      .statement-body { padding: 56px 24px 80px; }
       .pull-section { padding: 72px 24px; }
       footer { padding: 48px 24px 28px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -75,7 +91,7 @@
     <div class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></div>
     <ul class="nav-links" id="nav-links">
       <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="about.html">Jim Gregory</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="statement.html" class="active">Statement</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -87,17 +103,6 @@
   </div>
 
   <div class="statement-body">
-    <div class="statement-attr">
-      <p class="statement-attr-name">Jim Gregory</p>
-      <p class="statement-attr-title">Glass &amp; Steel Artist</p>
-      <div class="attr-divider"></div>
-      <p class="statement-meta">Abiquiu, New Mexico<br>jagdesigns.com<br>jagdesigns68@gmail.com</p>
-      <div class="statement-links">
-        <a href="portfolio.html">View the Work &rarr;</a>
-        <a href="about.html">Biography &rarr;</a>
-        <a href="contact.html">Commission Inquiry &rarr;</a>
-      </div>
-    </div>
     <div class="statement-text">
       <p class="lead">I begin with a clear vision. Before I touch any material, I know what I am trying to make: the form, the scale, the feeling it should carry in a space.</p>
       <p>Then the material takes over.</p>
@@ -105,6 +110,13 @@
       <p>Nothing gets thrown away. The scrap from one piece becomes the starting point for the next. A cut end, an offcut, a fragment of glass: I look at what is left and see the beginning of a new vision. The work is a continuous cycle, each piece feeding what comes after it.</p>
       <p>This is why no two pieces are alike, and why the process never really stops.</p>
       <p>I engineer my public work to hold up to weather and decades. But I let the making determine what it ultimately becomes.</p>
+    </div>
+    <div class="statement-attr">
+      <div class="attr-divider"></div>
+      <div>
+        <p class="attr-name">Jim Gregory</p>
+        <p class="attr-title">Glass &amp; Steel Artist &nbsp;&middot;&nbsp; Abiquiu, New Mexico</p>
+      </div>
     </div>
   </div>
 
@@ -117,7 +129,7 @@
     <div class="footer-grid">
       <div><p class="footer-brand">JAG Designs</p><p class="footer-sub">Glass &amp; Steel Art &nbsp;&middot;&nbsp; Abiquiu, New Mexico</p></div>
       <div><p class="footer-col-label">Contact</p><div class="footer-col-body"><a href="mailto:jagdesigns68@gmail.com">jagdesigns68@gmail.com</a><br><a href="tel:+15057953445">(505) 795-3445</a></div></div>
-      <div><p class="footer-col-label">Navigate</p><div class="footer-col-body"><a href="portfolio.html">Portfolio</a><br><a href="about.html">Jim Gregory</a><br><a href="statement.html">Statement</a><br><a href="contact.html">Contact</a></div></div>
+      <div><p class="footer-col-label">Navigate</p><div class="footer-col-body"><a href="portfolio.html">Portfolio</a><br><a href="about.html">About</a><br><a href="statement.html">Statement</a><br><a href="contact.html">Contact</a></div></div>
     </div>
     <div class="footer-bottom"><p class="footer-copy">&copy; 2026 JAG Designs &nbsp;&middot;&nbsp; All rights reserved.</p></div>
   </footer>
