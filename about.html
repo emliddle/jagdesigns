@@ -12,47 +12,60 @@
     :root { --steel-dark: #141824; --steel-deeper: #0D1017; --white: #FFFFFF; --off-white: #F6F5F1; --bronze: #C48A14; --text-dark: #1A1A1A; --text-mid: #5A5A5A; --border-dark: rgba(255,255,255,0.07); --border-light: rgba(0,0,0,0.08); }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-deeper); color: #fff; -webkit-font-smoothing: antialiased; }
+
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; background: rgba(13,16,23,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-dark); }
     .nav-logo { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; }
     .nav-links { display: flex; gap: 44px; list-style: none; }
-    .nav-links a { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.2s; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--bronze); }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .nav-toggle span { display: block; width: 24px; height: 1px; background: #fff; }
+
     .page-hero { background: var(--steel-dark); padding: 140px 56px 72px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-dark); }
     .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(196,138,20,0.06) 0%, transparent 60%); pointer-events: none; }
     .page-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 18px; display: block; }
     .page-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(40px, 5.5vw, 72px); font-weight: 300; color: #fff; line-height: 1.1; }
     .page-subtitle { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.72); margin-top: 16px; letter-spacing: 0.06em; }
+
+    /* ABOUT BODY — dark left, photo right */
     .about-body { display: grid; grid-template-columns: 1fr 1fr; }
     .about-text { background: var(--steel-dark); padding: 80px 64px 80px 56px; }
-    .about-text p { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.88); line-height: 1.9; margin-bottom: 28px; max-width: 520px; }
+    .about-text p { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.90); line-height: 1.9; margin-bottom: 28px; max-width: 520px; }
     .about-text p:last-child { margin-bottom: 0; }
-    .about-photo { position: sticky; top: 65px; height: calc(100vh - 65px); overflow: hidden; }
+    .about-photo { background: linear-gradient(145deg, #1A2438 0%, #263050 60%, #1A2438 100%); position: sticky; top: 65px; height: calc(100vh - 65px); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.50); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+
+    /* CREDENTIALS */
     .credentials { background: var(--steel-deeper); padding: 80px 56px; border-top: 1px solid var(--border-dark); }
     .cred-section-label { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 48px; display: block; }
     .cred-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 40px; }
+    .cred-block {}
     .cred-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.62); margin-bottom: 10px; }
     .cred-value { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 400; color: #fff; line-height: 1.3; margin-bottom: 6px; }
-    .cred-detail { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.72); line-height: 1.6; }
+    .cred-detail { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.82); line-height: 1.6; }
+
+    /* SKILLS */
     .skills-section { background: var(--steel-dark); padding: 80px 56px; border-top: 1px solid var(--border-dark); }
     .skills-heading { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 36px; font-weight: 300; color: #fff; margin-bottom: 40px; }
     .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
     .skill-item { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.78); padding: 14px 0; border-top: 1px solid var(--border-dark); }
+
+    /* CTA */
     .about-cta { background: var(--steel-deeper); padding: 100px 56px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-top: 1px solid var(--border-dark); }
     .about-cta-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 36px; font-weight: 300; font-style: italic; color: #fff; max-width: 520px; line-height: 1.3; }
     .btn-outline { display: inline-block; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.62); padding: 15px 36px; transition: border-color 0.3s, color 0.3s; white-space: nowrap; }
     .btn-outline:hover { border-color: var(--bronze); color: var(--bronze); }
+
     footer { background: var(--steel-deeper); border-top: 1px solid var(--border-dark); padding: 64px 56px 36px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-brand { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
-    .footer-sub { font-size: 12px; color: rgba(255,255,255,0.60); }
+    .footer-sub { font-size: 14px; color: rgba(255,255,255,0.65); }
     .footer-col-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
-    .footer-col-body { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.9; }
+    .footer-col-body { font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.9; }
     .footer-col-body a { color: rgba(255,255,255,0.78); text-decoration: none; transition: color 0.2s; }
     .footer-col-body a:hover { color: var(--bronze); }
     .footer-bottom { border-top: 1px solid var(--border-dark); padding-top: 24px; }
     .footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
+
     @media (max-width: 768px) {
       nav { padding: 18px 24px; }
       .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(13,16,23,0.98); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 99; }
@@ -101,7 +114,7 @@
       <p>I also build work sized for a home or a private garden. The materials, the craft, and the standard are the same regardless of scale.</p>
       <p>Custom commissions are always welcome.</p>
     </div>
-    <div class="about-photo">
+    <div class="about-photo" style="padding:0;">
       <img src="jim-gregory.png" alt="Jim Gregory welding in his Abiquiu studio" style="width:100%;height:100%;object-fit:cover;display:block;">
     </div>
   </div>
@@ -118,6 +131,7 @@
     </div>
   </section>
 
+  <!-- LOVELAND BOOTH -->
   <section style="background: var(--steel-dark); padding: 80px 56px; border-top: 1px solid var(--border-dark);">
     <div style="max-width: 900px; margin: 0 auto;">
       <span style="font-size:10px; letter-spacing:0.32em; text-transform:uppercase; color:var(--bronze); display:block; margin-bottom:20px;">In the Field</span>

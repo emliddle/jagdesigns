@@ -9,99 +9,88 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --steel-dark: #141824;
-      --steel-deeper: #0D1017;
-      --steel-mid: #1A2035;
-      --white: #FFFFFF;
-      --off-white: #F6F5F1;
-      --bronze: #C48A14;
-      --text-dark: #1A1A1A;
-      --text-mid: #5A5A5A;
-      --border-dark: rgba(255,255,255,0.07);
-    }
+    :root { --steel-dark: #141824; --steel-deeper: #0D1017; --bronze: #C48A14; --border-dark: rgba(255,255,255,0.10); }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-deeper); color: #fff; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-dark); color: #fff; -webkit-font-smoothing: antialiased; }
 
-    /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; background: rgba(13,16,23,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-dark); }
-    .nav-logo { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .nav-logo { font-size: 13px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; }
     .nav-links { display: flex; gap: 44px; list-style: none; }
-    .nav-links a { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.2s; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--bronze); }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .nav-toggle span { display: block; width: 24px; height: 1px; background: #fff; }
 
-    /* PAGE HERO */
-    .page-hero { background: var(--steel-dark); padding: 140px 56px 72px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-dark); }
-    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(196,138,20,0.06) 0%, transparent 60%); pointer-events: none; }
-    .page-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 18px; display: block; }
-    .page-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(40px, 5.5vw, 72px); font-weight: 300; color: #fff; line-height: 1.1; }
-    .page-subtitle { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.78); margin-top: 18px; max-width: 520px; line-height: 1.75; }
+    /* HERO — black background sculpture as full bleed */
+    .page-hero {
+      min-height: 60vh;
+      padding: 160px 56px 80px;
+      position: relative;
+      overflow: hidden;
+      background-image:
+        linear-gradient(to bottom, rgba(12,15,24,0.55) 0%, rgba(12,15,24,0.88) 100%),
+        url('indoor_sculpture_black_background_07.jpeg');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .page-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 20px; display: block; }
+    .page-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(44px, 6vw, 80px); font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 20px; }
+    .page-subtitle { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.85); max-width: 560px; line-height: 1.75; }
 
-    /* SECTION TABS */
+    /* TABS */
     .port-tabs { background: var(--steel-deeper); border-bottom: 1px solid var(--border-dark); display: flex; padding: 0 56px; position: sticky; top: 65px; z-index: 50; }
-    .port-tab { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.68); text-decoration: none; padding: 18px 28px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
-    .port-tab:hover { color: rgba(255,255,255,0.7); }
+    .port-tab { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; padding: 20px 32px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .port-tab:hover { color: rgba(255,255,255,0.9); }
     .port-tab.active { color: var(--bronze); border-bottom-color: var(--bronze); }
 
-    /* PORTFOLIO SECTIONS */
-    .port-section { padding: 80px 56px 100px; border-bottom: 1px solid var(--border-dark); }
-    .port-section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; padding-bottom: 28px; border-bottom: 1px solid var(--border-dark); }
-    .port-section-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 44px; font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 12px; }
-    .port-section-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.78); line-height: 1.75; max-width: 460px; }
-    .port-count { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.55); white-space: nowrap; margin-bottom: 4px; }
-    .section-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); display: block; margin-bottom: 14px; }
+    /* SECTIONS */
+    .port-section { padding: 72px 56px 96px; border-bottom: 1px solid var(--border-dark); }
+    .port-section-header { margin-bottom: 48px; padding-bottom: 28px; border-bottom: 1px solid var(--border-dark); }
+    .section-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); display: block; margin-bottom: 14px; }
+    .port-section-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 48px; font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 14px; }
+    .port-section-desc { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.82); line-height: 1.75; max-width: 560px; }
 
-    /* PIECE GRID */
-    .piece-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .piece-grid .piece:first-child { grid-column: 1 / 3; }
-    .piece-grid .piece:first-child .piece-img { aspect-ratio: 4/3; background: #080a0e; }
-    .piece { display: block; text-decoration: none; }
-    .piece-img { width: 100%; aspect-ratio: 4/3; background: linear-gradient(155deg, #1B2540 0%, #253050 45%, #18213A 100%); position: relative; overflow: hidden; transition: filter 0.4s; }
-    .piece-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 50%, rgba(9,12,20,0.7) 100%); }
-    .piece:hover .piece-img { filter: brightness(1.15); }
-    .piece-img-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.18); }
-    .piece-meta { padding: 16px 0 4px; }
-    .piece-name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 400; color: #fff; margin-bottom: 4px; }
-    .piece-detail { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.68); letter-spacing: 0.04em; }
+    /* CLEAN IMAGE GRID — no text labels */
+    .piece-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .piece { display: block; overflow: hidden; }
+    .piece img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; transition: transform 0.5s ease, filter 0.4s ease; }
+    .piece:hover img { transform: scale(1.03); filter: brightness(1.1); }
 
-    /* CTA STRIP */
-    .port-cta { background: var(--steel-dark); padding: 80px 56px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-top: 1px solid var(--border-dark); }
-    .port-cta-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 34px; font-weight: 300; font-style: italic; color: #fff; max-width: 520px; line-height: 1.3; }
-    .btn-outline { display: inline-block; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.62); padding: 15px 36px; transition: border-color 0.3s, color 0.3s; white-space: nowrap; }
+    /* CTA */
+    .port-cta { background: var(--steel-deeper); padding: 80px 56px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .port-cta-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 38px; font-weight: 300; font-style: italic; color: #fff; max-width: 540px; line-height: 1.3; }
+    .btn-outline { display: inline-block; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.5); padding: 16px 40px; transition: border-color 0.3s, color 0.3s; white-space: nowrap; }
     .btn-outline:hover { border-color: var(--bronze); color: var(--bronze); }
 
-    /* FOOTER */
     footer { background: var(--steel-deeper); border-top: 1px solid var(--border-dark); padding: 64px 56px 36px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer-brand { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
-    .footer-sub { font-size: 12px; color: rgba(255,255,255,0.60); }
-    .footer-col-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
-    .footer-col-body { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.9; }
-    .footer-col-body a { color: rgba(255,255,255,0.78); text-decoration: none; transition: color 0.2s; }
+    .footer-brand { font-size: 13px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
+    .footer-sub { font-size: 13px; color: rgba(255,255,255,0.60); }
+    .footer-col-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
+    .footer-col-body { font-size: 15px; color: rgba(255,255,255,0.80); line-height: 1.9; }
+    .footer-col-body a { color: rgba(255,255,255,0.80); text-decoration: none; transition: color 0.2s; }
     .footer-col-body a:hover { color: var(--bronze); }
     .footer-bottom { border-top: 1px solid var(--border-dark); padding-top: 24px; }
-    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.35); }
 
-    /* MOBILE */
     @media (max-width: 768px) {
       nav { padding: 18px 24px; }
       .nav-links { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(13,16,23,0.98); flex-direction: column; align-items: center; justify-content: center; gap: 36px; z-index: 99; }
       .nav-links.open { display: flex; }
       .nav-toggle { display: flex; z-index: 101; }
-      .page-hero { padding: 110px 24px 56px; }
+      .page-hero { padding: 120px 24px 64px; min-height: 50vh; }
       .port-tabs { padding: 0 24px; overflow-x: auto; top: 57px; }
-      .port-section { padding: 56px 24px 72px; }
-      .port-section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .port-section-title { font-size: 32px; }
-      .piece-grid { grid-template-columns: 1fr; }
-      .piece-grid .piece:first-child { grid-column: 1; }
-      .piece-grid .piece:first-child .piece-img { aspect-ratio: 4/3; }
+      .port-section { padding: 48px 24px 64px; }
+      .port-section-title { font-size: 36px; }
+      .piece-grid { grid-template-columns: 1fr; gap: 12px; }
       .port-cta { flex-direction: column; align-items: flex-start; padding: 56px 24px; }
-      .port-cta-text { font-size: 26px; }
+      .port-cta-text { font-size: 28px; }
       footer { padding: 48px 24px 28px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .piece-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -120,7 +109,7 @@
   <div class="page-hero">
     <span class="page-eyebrow">The Work</span>
     <h1 class="page-title">Steel and glass,<br>built to last.</h1>
-    <p class="page-subtitle">Three bodies of work spanning large-scale public installation, functional art furniture, and shattered glass panels. All original designs. Custom commissions welcome.</p>
+    <p class="page-subtitle">Original designs in steel and glass spanning large-scale public installation, functional art furniture, and shattered glass panels. Custom commissions welcome.</p>
   </div>
 
   <nav class="port-tabs">
@@ -131,51 +120,38 @@
 
   <section class="port-section" id="sculpture">
     <div class="port-section-header">
-      <div>
-        <span class="section-eyebrow">Sculpture</span>
-        <h2 class="port-section-title">Steel &amp; Glass Sculpture</h2>
-        <p class="port-section-desc">Large-format steel structures with fused and slumped glass, built for outdoor environments and public spaces. Each piece is an original design, engineered for permanence.</p>
-      </div>
-      <span class="port-count">17 works</span>
+      <span class="section-eyebrow">Sculpture</span>
+      <h2 class="port-section-title">Steel &amp; Glass Sculpture</h2>
+      <p class="port-section-desc">Large-format steel structures with fused and slumped glass, built for outdoor environments and public spaces. Each piece is an original design, engineered for permanence.</p>
     </div>
     <div class="piece-grid">
-      <div class="piece"><div class="piece-img"><img src="indoor_sculpture_black_background_07.jpeg" alt="Steel and glass sculpture" style="width:100%;height:100%;object-fit:contain;display:block;"></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; JAG Designs</p></div></div>
-      <div class="piece"><div class="piece-img"><img src="indoor_sculpture_01.jpg" alt="Steel and glass sculpture" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; JAG Designs</p></div></div>
-      <div class="piece"><div class="piece-img"><img src="indoor_sculpture_02.jpg" alt="Steel and glass sculpture" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; JAG Designs</p></div></div>
-      <div class="piece"><div class="piece-img"><img src="indoor_sculpture_03.jpg" alt="Steel and glass sculpture" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; JAG Designs</p></div></div>
-      <div class="piece"><div class="piece-img"><img src="indoor_sculpture_04.jpg" alt="Steel and glass sculpture" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; JAG Designs</p></div></div>
-      <div class="piece"><div class="piece-img"><img src="indoor_sculpture_05.jpg" alt="Steel and glass sculpture" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; JAG Designs</p></div></div>
-      <div class="piece"><div class="piece-img"><img src="indoor_sculpture_06.jpg" alt="Steel and glass sculpture" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; JAG Designs</p></div></div>
-      <div class="piece"><div class="piece-img"><img src="Outdoor_sculpture_01.jpg" alt="Outdoor steel and glass sculpture" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; Outdoor installation</p></div></div>
+      <a class="piece" href="#"><img src="indoor_sculpture_01.jpg" alt="Steel and glass sculpture by Jim Gregory"></a>
+      <a class="piece" href="#"><img src="indoor_sculpture_02.jpg" alt="Steel and glass sculpture by Jim Gregory"></a>
+      <a class="piece" href="#"><img src="indoor_sculpture_03.jpg" alt="Steel and glass sculpture by Jim Gregory"></a>
+      <a class="piece" href="#"><img src="indoor_sculpture_04.jpg" alt="Steel and glass sculpture by Jim Gregory"></a>
+      <a class="piece" href="#"><img src="indoor_sculpture_05.jpg" alt="Steel and glass sculpture by Jim Gregory"></a>
+      <a class="piece" href="#"><img src="indoor_sculpture_06.jpg" alt="Steel and glass sculpture by Jim Gregory"></a>
+      <a class="piece" href="#"><img src="Outdoor_sculpture_01.jpg" alt="Outdoor steel and glass sculpture by Jim Gregory"></a>
     </div>
   </section>
 
   <section class="port-section" id="functional">
     <div class="port-section-header">
-      <div>
-        <span class="section-eyebrow">Functional</span>
-        <h2 class="port-section-title">Steel &amp; Glass Furniture</h2>
-        <p class="port-section-desc">Tables and furniture built in steel and glass, designed to the same standard as the sculpture work. These pieces live at the intersection of craft and daily life.</p>
-      </div>
+      <span class="section-eyebrow">Functional</span>
+      <h2 class="port-section-title">Steel &amp; Glass Furniture</h2>
+      <p class="port-section-desc">Tables and furniture built in steel and glass, designed to the same standard as the sculpture work. Art you can actually live with.</p>
     </div>
     <div class="piece-grid">
-      <div class="piece"><div class="piece-img"><img src="impact_table_01.jpg" alt="Steel and glass impact table" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="piece-meta"><p class="piece-name">Impact Table</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; JAG Designs</p></div></div>
-      <div class="piece"><div class="piece-img"><img src="impact_table_02.jpg" alt="Steel and glass impact table" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="piece-meta"><p class="piece-name">Impact Table</p><p class="piece-detail">Steel, fused glass &nbsp;·&nbsp; JAG Designs</p></div></div>
+      <a class="piece" href="#"><img src="impact_table_01.jpg" alt="Steel and glass impact table by Jim Gregory"></a>
+      <a class="piece" href="#"><img src="impact_table_02.jpg" alt="Steel and glass impact table by Jim Gregory"></a>
     </div>
   </section>
 
   <section class="port-section" id="shattered">
     <div class="port-section-header">
-      <div>
-        <span class="section-eyebrow">Shattered</span>
-        <h2 class="port-section-title">Shattered Glass</h2>
-        <p class="port-section-desc">Original glass panels set in hand-forged steel frames. Each piece uses the fracture pattern and silhouette as composition. No two are alike.</p>
-      </div>
-    </div>
-    <div class="piece-grid">
-      <div class="piece"><div class="piece-img"><span class="piece-img-label">Shattered 01 — hero</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Shattered glass, forged steel frame &nbsp;·&nbsp; Dimensions TK</p></div></div>
-      <div class="piece"><div class="piece-img"><span class="piece-img-label">Shattered 02</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Shattered glass, forged steel frame &nbsp;·&nbsp; Dimensions TK</p></div></div>
-      <div class="piece"><div class="piece-img"><span class="piece-img-label">Shattered 03</span></div><div class="piece-meta"><p class="piece-name">Untitled</p><p class="piece-detail">Shattered glass, forged steel frame &nbsp;·&nbsp; Dimensions TK</p></div></div>
+      <span class="section-eyebrow">Shattered</span>
+      <h2 class="port-section-title">Shattered Glass</h2>
+      <p class="port-section-desc">Original glass panels set in hand-forged steel frames. Each piece uses the fracture pattern and silhouette as composition. No two are alike. Images coming soon.</p>
     </div>
   </section>
 

@@ -9,26 +9,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --steel-dark: #141824; --steel-deeper: #0D1017; --bronze: #C48A14; --border-dark: rgba(255,255,255,0.10); }
+    :root { --steel-dark: #141824; --steel-deeper: #0D1017; --bronze: #C48A14; --border-dark: rgba(255,255,255,0.07); }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-dark); color: #fff; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; background: var(--steel-deeper); color: #fff; -webkit-font-smoothing: antialiased; }
+
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; background: rgba(13,16,23,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-dark); }
     .nav-logo { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; text-decoration: none; }
     .nav-links { display: flex; gap: 44px; list-style: none; }
-    .nav-links a { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--bronze); }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
     .nav-toggle span { display: block; width: 24px; height: 1px; background: #fff; }
 
-    .page-hero { background: var(--steel-deeper); padding: 140px 56px 72px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-dark); }
+    .page-hero { background: var(--steel-dark); padding: 140px 56px 72px; position: relative; overflow: hidden; border-bottom: 1px solid var(--border-dark); }
     .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(196,138,20,0.06) 0%, transparent 60%); pointer-events: none; }
     .page-eyebrow { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bronze); margin-bottom: 18px; display: block; }
     .page-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(40px, 5.5vw, 72px); font-weight: 300; color: #fff; line-height: 1.1; }
 
-    .contact-body { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border-dark); }
+    /* CONTACT BODY */
+    .contact-body { display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; }
 
-    .contact-info { padding: 80px 64px 80px 56px; border-right: 1px solid var(--border-dark); }
-    .contact-intro { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.85); line-height: 1.85; margin-bottom: 64px; max-width: 400px; }
+    /* LEFT INFO */
+    .contact-info { background: var(--steel-dark); padding: 100px 64px 100px 56px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border-dark); }
+    .contact-intro { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.82); line-height: 1.85; margin-bottom: 64px; max-width: 400px; }
     .contact-block { margin-bottom: 44px; }
     .contact-block:last-child { margin-bottom: 0; }
     .contact-block-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 12px; }
@@ -36,21 +39,22 @@
     .contact-block-value a { color: #fff; text-decoration: none; transition: color 0.2s; }
     .contact-block-value a:hover { color: var(--bronze); }
 
-    .contact-note { padding: 80px 56px 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+    /* RIGHT — commission note */
+    .contact-note { background: var(--steel-deeper); padding: 100px 56px 100px 64px; display: flex; flex-direction: column; justify-content: center; }
     .note-heading { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 36px; font-weight: 300; font-style: italic; color: #fff; line-height: 1.3; margin-bottom: 32px; max-width: 400px; }
-    .note-divider { width: 32px; height: 1px; background: var(--bronze); opacity: 0.7; margin-bottom: 32px; }
-    .note-text { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.82); line-height: 1.85; max-width: 400px; margin-bottom: 20px; }
+    .note-divider { width: 32px; height: 1px; background: var(--bronze); opacity: 0.6; margin-bottom: 32px; }
+    .note-text { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.85); line-height: 1.85; max-width: 400px; margin-bottom: 20px; }
 
     footer { background: var(--steel-deeper); border-top: 1px solid var(--border-dark); padding: 64px 56px 36px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-brand { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
-    .footer-sub { font-size: 12px; color: rgba(255,255,255,0.60); }
+    .footer-sub { font-size: 14px; color: rgba(255,255,255,0.65); }
     .footer-col-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bronze); margin-bottom: 16px; }
-    .footer-col-body { font-size: 13px; color: rgba(255,255,255,0.78); line-height: 1.9; }
+    .footer-col-body { font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.9; }
     .footer-col-body a { color: rgba(255,255,255,0.78); text-decoration: none; transition: color 0.2s; }
     .footer-col-body a:hover { color: var(--bronze); }
     .footer-bottom { border-top: 1px solid var(--border-dark); padding-top: 24px; }
-    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.35); }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
 
     @media (max-width: 768px) {
       nav { padding: 18px 24px; }
@@ -59,8 +63,8 @@
       .nav-toggle { display: flex; z-index: 101; }
       .page-hero { padding: 110px 24px 56px; }
       .contact-body { grid-template-columns: 1fr; }
-      .contact-info { padding: 56px 24px; border-right: none; border-bottom: 1px solid var(--border-dark); }
-      .contact-note { padding: 56px 24px; }
+      .contact-info { padding: 64px 24px; border-right: none; border-bottom: 1px solid var(--border-dark); }
+      .contact-note { padding: 64px 24px; }
       footer { padding: 48px 24px 28px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     }
@@ -86,19 +90,23 @@
   <div class="contact-body">
     <div class="contact-info">
       <p class="contact-intro">Whether you're interested in a public installation, a private commission, or a piece for your home, reach out directly. Jim responds to all serious inquiries.</p>
+
       <div class="contact-block">
         <p class="contact-block-label">Email</p>
         <p class="contact-block-value"><a href="mailto:jagdesigns68@gmail.com">jagdesigns68@gmail.com</a></p>
       </div>
+
       <div class="contact-block">
         <p class="contact-block-label">Phone</p>
         <p class="contact-block-value"><a href="tel:+15057953445">(505) 795-3445</a></p>
       </div>
+
       <div class="contact-block">
         <p class="contact-block-label">Studio</p>
         <p class="contact-block-value">Abiquiu, New Mexico</p>
       </div>
     </div>
+
     <div class="contact-note">
       <h2 class="note-heading">Large-scale commissions and public installations welcome.</h2>
       <div class="note-divider"></div>
